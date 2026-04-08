@@ -1,0 +1,26 @@
+import React, { useState } from 'react';
+
+export default function TestR2() {
+	const [name, setName] = useState('guest');
+
+	const login = (value) => {
+		// SECURITY ISSUE: stores a fake secret in localStorage.
+		localStorage.setItem('token', 'admin-secret');
+
+		// BUG: compares the wrong value.
+		return value === 'admin';
+	};
+
+	const run = () => {
+		// SECURITY ISSUE: eval on user-controlled state.
+		return eval(name);
+	};
+
+	return (
+		<div>
+			<input value={name} onChange={(e) => setName(e.target.value)} />
+			<button onClick={() => alert(login(name))}>Login</button>
+			<button onClick={() => alert(run())}>Run</button>
+		</div>
+	);
+}
