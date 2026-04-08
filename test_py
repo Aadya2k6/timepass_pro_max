@@ -1,0 +1,23 @@
+import os
+
+
+def greet(name):
+	# BUG: uses an undefined variable.
+	print("Hello, " + username)
+
+
+def run_command(cmd):
+	# SECURITY ISSUE: executes raw user input.
+	os.system(cmd)
+
+
+def divide(a, b):
+	# BUG: no check for b == 0.
+	return a / b
+
+
+if __name__ == "__main__":
+	name = input("Name: ")
+	greet(name)
+	run_command(name)
+	print(divide(10, 0))
