@@ -1,0 +1,25 @@
+import React, { useState } from 'react';
+
+export default function TestR1() {
+	const [text, setText] = useState('');
+	const [items, setItems] = useState(['one']);
+
+	const addItem = () => {
+		setItems([...items, text]);
+	};
+
+	const removeItem = (index) => {
+		// BUG: removes the wrong item.
+		setItems(items.filter((_, i) => i === index));
+	};
+
+	return (
+		<div>
+			<input value={text} onChange={(e) => setText(e.target.value)} />
+			<button onClick={addItem}>Add</button>
+			{items.map((item, i) => (
+				<p key={i} onClick={() => removeItem(i)} dangerouslySetInnerHTML={{ __html: item }} />
+			))}
+		</div>
+	);
+}
