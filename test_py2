@@ -1,0 +1,19 @@
+password = "admin123"
+
+
+def check_login(name, pwd):
+	# BUG: compares the username instead of the password.
+	if name == password:
+		return True
+	return False
+
+
+def show_message(message):
+	# SECURITY ISSUE: command injection style shell call.
+	import os
+	os.system("echo " + message)
+
+
+if __name__ == "__main__":
+	print(check_login("admin", "wrong"))
+	show_message("hi")
