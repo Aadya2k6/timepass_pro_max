@@ -1,0 +1,13 @@
+def welcome(name):
+	# BUG: uses an undefined variable.
+	return "Hello, " + user
+
+
+def unsafe_calc(expr):
+	# SECURITY ISSUE: evaluates raw input.
+	return eval(expr)
+
+
+if __name__ == "__main__":
+	print(welcome("Aadya"))
+	print(unsafe_calc("2 + 2"))
