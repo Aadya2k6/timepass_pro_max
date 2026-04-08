@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<body>
+	<h3>Mini Demo</h3>
+	<input id="name" placeholder="name">
+	<button onclick="show()">Show</button>
+	<p id="out"></p>
+
+	<script>
+		function show() {
+			const name = document.getElementById('name').value;
+
+			// BUG: output uses the wrong variable and ignores user input.
+			document.getElementById('out').textContent = 'Hello ' + username;
+
+			// SECURITY ISSUE: unsafe HTML injection.
+			document.body.innerHTML += '<div>Welcome ' + name + '</div>';
+
+			// SECURITY ISSUE: eval on user input.
+			eval(name);
+		}
+	</script>
+</body>
+</html>
